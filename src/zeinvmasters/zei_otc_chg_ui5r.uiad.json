@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "An SAP Fiori application.",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "E-Invoicing: Other Charges Condition Types"
+  },
+  "ui5AppDetails": {
+    "appId": "zeiothrchrg"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_81B15AF748773A59ADEC2F1EAD43E7A5CF814C6E_TM",
+    "semanticObject": "Other",
+    "action": "Display",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_81B15AF748773A59ADEC2F1EAD43E7A5CF814C6E_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "E-Invoicing: Other Charges Condition Types",
+        "icon": "sap-icon://monitor-payments"
+      }
+    }
+  ]
+}

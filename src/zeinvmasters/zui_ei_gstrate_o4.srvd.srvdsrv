@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_EI_GSTRATE'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_EI_GSTRATE'
+  }
+}
+define service ZUI_EI_GSTRATE_O4 provider contracts odata_v4_ui {
+  expose ZC_EI_GSTRATE;
+}

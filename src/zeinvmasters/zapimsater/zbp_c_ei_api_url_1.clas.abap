@@ -1,0 +1,9 @@
+CLASS zbp_c_ei_api_url_1 DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zc_ei_api_url_1.
+protected section.
+private section.
+ENDCLASS.
+
+
+
+CLASS ZBP_C_EI_API_URL_1 IMPLEMENTATION.
+ENDCLASS.

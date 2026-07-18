@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "An SAP Fiori application.",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "E-Invoicing: State Codes"
+  },
+  "ui5AppDetails": {
+    "appId": "zuistate"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_29A8D72ED50D5BF0042EB9C421265D69E0040D13_TM",
+    "semanticObject": "State",
+    "action": "Display",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_29A8D72ED50D5BF0042EB9C421265D69E0040D13_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "E-Invoicing: State Codes",
+        "icon": "sap-icon://monitor-payments"
+      }
+    }
+  ]
+}

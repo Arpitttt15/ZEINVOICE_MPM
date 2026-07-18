@@ -1,0 +1,9 @@
+CLASS zbp_i_billinginv DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_billinginv.
+protected section.
+private section.
+ENDCLASS.
+
+
+
+CLASS ZBP_I_BILLINGINV IMPLEMENTATION.
+ENDCLASS.

@@ -1,0 +1,9 @@
+projection;
+strict ( 1 );
+
+define behavior for ZC_BILLING_INV_FI
+{
+  use action CreateIRN;
+  use action JSON;
+  use action CIRN;
+}

@@ -1,0 +1,19 @@
+managed implementation in class zbp_i_billing_inv unique;
+strict ( 1 );
+
+define behavior for ZI_BILLING_INV //alias <alias_name>
+//persistent table <???>
+with unmanaged save
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  //  field ( readonly: update ) BillingDocument;
+  action ( features : instance ) CreateIRN result [1] $self;
+  factory action JSON [1]; //result [1] $self;
+  action ( features : instance ) CIRN result [1] $self;
+
+}

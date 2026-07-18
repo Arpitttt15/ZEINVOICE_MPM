@@ -1,0 +1,57 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: { typeName: 'E-Way Bill',
+                typeNamePlural: 'E-Way Bill' }}
+annotate entity ZI_EWB_TRANS_DET with
+{
+
+  @UI.facet: [{  id : '_transdtls',
+   purpose: #STANDARD,
+
+   type: #IDENTIFICATION_REFERENCE,
+   label: 'Transport Details',
+   position: 10 }]
+
+  @UI: { lineItem: [{ position: 10 }],
+  identification:  [{ position: 10 }],
+  selectionField:  [{ position: 10 }] }
+  TransId;
+
+  @UI: { lineItem: [{ position: 20 }],
+  identification:  [{ position: 20 }],
+  selectionField:  [{ position: 20 }] }
+  TransNm;
+
+  @UI: { lineItem: [{ position: 30 }],
+  identification:  [{ position: 30 }],
+  selectionField:  [{ position: 30 }] }
+  VehNo;
+
+  @UI: { lineItem: [{ position: 40 }],
+  identification:  [{ position: 40 }],
+  selectionField:  [{ position: 40 }] }
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZI_VEHTYPE_DETAILS', element: 'value' } }]
+  VehType;
+
+  @UI: { lineItem: [{ position: 50 }],
+  identification:  [{ position: 50 }],
+  selectionField:  [{ position: 50 }] }
+  Distance;
+
+  @UI: { lineItem: [{ position: 60 }],
+  identification:  [{ position: 60 }],
+  selectionField:  [{ position: 60 }] }
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZI_TRANSTYP_DTLS', element: 'value' } }]
+  TransMd;
+
+  @UI: { lineItem: [{ position: 70 }],
+  identification:  [{ position: 70 }],
+  selectionField:  [{ position: 70 }] }
+  TransDocNo;
+
+  @UI: { lineItem: [{ position: 80 }],
+  identification:  [{ position: 80 }],
+  selectionField:  [{ position: 80 }] }
+  TransDt;
+
+}

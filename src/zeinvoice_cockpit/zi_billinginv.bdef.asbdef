@@ -1,0 +1,30 @@
+managed implementation in class zbp_i_billinginv unique;
+strict ( 2 );
+
+define behavior for ZI_BILLINGINV //alias <alias_name>
+with unmanaged save
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) BillingDocument;
+  association _ewaybill { create; }
+
+  action CreateIRN result [1] $self;
+
+}
+
+define behavior for ZI_ewaybill //alias <alias_name>
+persistent table zew_ewaybill
+lock dependent by _BILLINGINV
+authorization dependent by _BILLINGINV
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) Bukrs, Docno, DocType, Gjahr, Ebillno;
+  association _BILLINGINV;
+}

@@ -1,0 +1,43 @@
+managed implementation in class ZBP_R_EI_CANC_REASON unique;
+strict ( 2 );
+with draft;
+define behavior for ZR_EI_CANC_REASON alias ZrEiCancReason
+persistent table ZEI_CANC_REASON
+draft table ZEI_CANC_REASO_D
+etag master LastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+
+{
+  field ( readonly )
+   Id,
+   CreatedBy,
+   CreatedAt,
+   LastChangedBy,
+   LastChangedAt;
+
+  field ( numbering : managed )
+   Id;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZEI_CANC_REASON
+  {
+    Id = id;
+    CancReas = canc_reas;
+    CancDesc = canc_desc;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+  }
+}

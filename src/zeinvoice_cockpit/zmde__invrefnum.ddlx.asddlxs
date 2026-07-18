@@ -1,0 +1,79 @@
+@Metadata.layer: #CORE
+@UI.headerInfo:{
+    typeName: 'ExpoundTax E-Invoice/E-Waybill Cockpit',
+    typeNamePlural: 'Billing Documents',
+    title:{ value: 'BillingDocument' }, description:{ value: 'BillingDocument' }
+  }
+annotate entity ZC_BILLINGINV with
+{
+
+  @UI.facet: [
+
+    {
+   id : 'Header',
+   purpose: #STANDARD,
+   type: #IDENTIFICATION_REFERENCE,
+   label: 'Billing Documents',
+   position: 10
+    },
+    {
+   id : 'Item',
+   purpose: #STANDARD,
+   type: #LINEITEM_REFERENCE,
+   label: 'EwayBill Document',
+   position: 20,
+   targetElement: '_ewaybill'
+    } ]
+
+  @UI: { lineItem:[{ position: 10 }, { type: #FOR_ACTION, dataAction: 'CreateIRN',
+                                               label: 'Create IRN', invocationGrouping: #CHANGE_SET }],
+  identification: [{ position: 10 }, { type: #FOR_ACTION, dataAction: 'CreateIRN',
+                                             label: 'Create IRN', invocationGrouping: #CHANGE_SET }],
+  selectionField: [{ position: 10 }] }
+
+  BillingDocument;
+
+  @UI: { lineItem:[{ position: 20 }],
+  identification: [{ position: 20 }],
+  selectionField: [{ position: 20 }] }
+  SoldToParty;
+
+  @UI: { lineItem:[{ position: 30 }],
+  identification: [{ position: 30 }],
+  selectionField: [{ position: 30 }] }
+  BillingDocumentDate;
+
+  @UI: { lineItem:[{ position: 40 }],
+  identification: [{ position: 40 }],
+  selectionField: [{ position: 40 }] }
+  BillingDocumentType;
+
+  @UI: { lineItem:[{ position: 50 }],
+  identification: [{ position: 50 }],
+  selectionField: [{ position: 50 }] }
+  CompanyCode;
+
+  @UI: { lineItem:[{ position: 60 }],
+  identification: [{ position: 60 }],
+  selectionField: [{ position: 60 }] }
+  DistributionChannel;
+
+  @UI: { lineItem:[{ position: 70 }],
+  identification: [{ position: 70 }] }
+  Irn;
+
+  @UI: { lineItem:[{ position: 80 }],
+  identification: [{ position: 80 }],
+  selectionField: [{ position: 80 }] }
+  IrnStatus;
+
+  @UI: { lineItem:[{ position: 90 }],
+  identification: [{ position: 90 }] }
+  MSG;
+
+  /* Associations */
+  //  _ewaybill;;
+  
+  
+
+}

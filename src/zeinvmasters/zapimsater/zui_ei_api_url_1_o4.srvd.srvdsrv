@@ -1,0 +1,12 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_EI_API_URL_1'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_EI_API_URL_1'
+  }
+}
+define service ZUI_EI_API_URL_1_O4
+  provider contracts odata_v4_ui {
+  expose ZC_EI_API_URL_1;
+}

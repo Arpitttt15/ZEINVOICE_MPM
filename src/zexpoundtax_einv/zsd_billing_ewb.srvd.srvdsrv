@@ -1,0 +1,5 @@
+@EndUserText.label: 'E-Way Bill Service Defintion'
+define service ZSD_BILLING_EWB {
+  expose ZC_BILLING_EWB    as EWB_HEAD;
+  expose ZC_EWB_TRANS_DTLS as TRANS_DTLS;
+}

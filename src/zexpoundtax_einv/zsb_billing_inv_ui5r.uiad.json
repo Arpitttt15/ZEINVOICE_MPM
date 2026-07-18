@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "An SAP Fiori application.",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "E-Invoice Generation : ExpoundTax"
+  },
+  "ui5AppDetails": {
+    "appId": "zsbbillinginv"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_CD03D52FADA11CA3056241A0F0A4364BAB16BDD1_TM",
+    "semanticObject": "EInvoice",
+    "action": "Display",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_CD03D52FADA11CA3056241A0F0A4364BAB16BDD1_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "E-Invoice Generation : ExpoundTax",
+        "icon": "sap-icon://add-activity"
+      }
+    }
+  ]
+}

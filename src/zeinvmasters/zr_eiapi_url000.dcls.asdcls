@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZR_EIAPI_URL000'
+@MappingRole: true
+define role ZR_EIAPI_URL000 {
+  grant select on ZR_EIAPI_URL000
+  where TRUE;
+}

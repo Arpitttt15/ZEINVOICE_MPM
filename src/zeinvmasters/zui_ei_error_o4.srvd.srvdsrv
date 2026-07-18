@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_EI_ERROR'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_EI_ERROR'
+  }
+}
+define service ZUI_EI_ERROR_O4 provider contracts odata_v4_ui {
+  expose ZC_EI_ERROR;
+}

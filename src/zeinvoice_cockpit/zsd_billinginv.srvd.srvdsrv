@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition'
+define service ZSD_BILLINGINV {
+  expose ZC_BILLINGINV;
+  expose ZC_EWAYBILL;
+}

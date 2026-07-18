@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZC_EIAPI_URL'
+@MappingRole: true
+define role ZC_EIAPI_URL {
+  grant select on ZC_EIAPI_URL
+  where INHERITING CONDITIONS FROM ENTITY ZR_EIAPI_URL REPLACING { ROOT WITH _BaseEntity };
+}

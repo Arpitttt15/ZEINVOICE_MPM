@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "An SAP Fiori application.",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "E-Invoicing: Master API"
+  },
+  "ui5AppDetails": {
+    "appId": "zuieiapiurl"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_C2457DD10942F78EEBE9BC57020627734256ACB6_TM",
+    "semanticObject": "API",
+    "action": "Display",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_C2457DD10942F78EEBE9BC57020627734256ACB6_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "E-Invoicing: Master API",
+        "icon": "sap-icon://monitor-payments"
+      }
+    }
+  ]
+}

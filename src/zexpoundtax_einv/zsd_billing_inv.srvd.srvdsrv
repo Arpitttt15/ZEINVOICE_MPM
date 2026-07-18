@@ -1,0 +1,4 @@
+@EndUserText.label: 'Billing Invoice Service Definition'
+define service ZSD_BILLING_INV {
+  expose ZC_BILLING_INV;
+}

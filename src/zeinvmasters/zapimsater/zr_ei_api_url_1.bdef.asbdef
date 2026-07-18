@@ -1,0 +1,59 @@
+managed implementation in class ZBP_R_EI_API_URL_1 unique;
+strict ( 2 );
+with draft;
+define behavior for ZR_EI_API_URL_1 alias ZrEiApiUrl1
+persistent table ZEI_API_URL_1
+draft table ZEI_API_URL_1_D
+etag master LastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+
+{
+  field ( mandatory : create )
+   Bukrs,
+   Type;
+
+  field ( readonly )
+   Id,
+   CreatedBy,
+   CreatedAt,
+   LastChangedBy,
+   LastChangedAt;
+
+  field ( numbering : managed )
+   Id;
+
+  field ( readonly : update )
+   Bukrs,
+   Type;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZEI_API_URL_1
+  {
+    Id = id;
+    Bukrs = bukrs;
+    Type = type;
+    Method = method;
+    Url = url;
+    Param1 = param1;
+    Param2 = param2;
+    Param3 = param3;
+    Param4 = param4;
+    Param5 = param5;
+    Param6 = param6;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+  }
+}

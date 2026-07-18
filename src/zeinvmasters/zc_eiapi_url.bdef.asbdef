@@ -1,0 +1,13 @@
+projection implementation in class ZBP_C_EIAPI_URL unique;
+strict ( 2 );
+extensible;
+use side effects;
+define behavior for ZC_EIAPI_URL alias ZcEiapiUrl
+extensible
+use etag
+{
+  use create;
+  use update;
+  use delete;
+
+}

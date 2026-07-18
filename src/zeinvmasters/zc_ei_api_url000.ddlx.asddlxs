@@ -1,0 +1,144 @@
+@Metadata.layer: #CORE
+@UI.headerInfo.title.type: #STANDARD
+@UI.headerInfo.title.value: 'Id'
+@UI.headerInfo.description.type: #STANDARD
+@UI.headerInfo.description.value: 'Id'
+@UI.headerInfo:{ typeName: 'ExpoundTax APIs',typeNamePlural: 'ExpoundTax APIs'}
+annotate view ZC_EI_API_URL000 with
+{
+
+  @UI.hidden: true
+  @EndUserText.label: 'Id'
+  @UI.facet: [ {
+    label: 'ExpoundTax APIs',
+    id: 'ExpoundTax APIs',
+    purpose: #STANDARD,
+    position: 10 ,
+    type: #IDENTIFICATION_REFERENCE
+  } ]
+  @UI.identification: [ {
+    position: 10 ,
+    label: 'UUID'
+  } ]
+  @UI.lineItem: [ {
+    position: 10 ,
+    label: 'UUID'
+  } ]
+  @UI.selectionField: [ {
+    position: 10
+  } ]
+  Id;
+
+  @UI.identification: [ {
+    position: 20 ,
+    label: 'API Method'
+  } ]
+  @UI.lineItem: [ {
+    position: 20 ,
+    label: 'API Method'
+  } ]
+  Method;
+
+  @UI.identification: [ {
+    position: 30 ,
+    label: 'API URL'
+  } ]
+  @UI.lineItem: [ {
+    position: 30 ,
+    label: 'API URL'
+  } ]
+  Url;
+
+  @UI.identification: [ {
+    position: 40 ,
+    label: 'Parameter 1'
+  } ]
+  @UI.lineItem: [ {
+    position: 40 ,
+    label: 'Parameter 1'
+  } ]
+  Param1;
+
+  @UI.identification: [ {
+    position: 50 ,
+    label: 'Parameter 2'
+  } ]
+  @UI.lineItem: [ {
+    position: 50 ,
+    label: 'Parameter 2'
+  } ]
+  Param2;
+
+  @UI.identification: [ {
+    position: 60 ,
+    label: 'Parameter 3'
+  } ]
+  @UI.lineItem: [ {
+    position: 60 ,
+    label: 'Parameter 3'
+  } ]
+  @UI.selectionField: [ {
+    position: 60
+  } ]
+  Param3;
+
+  @UI.identification: [ {
+    position: 70 ,
+    label: 'Parameter 4'
+  } ]
+  @UI.lineItem: [ {
+    position: 70 ,
+    label: 'Parameter 4'
+  } ]
+  Param4;
+
+  @UI.identification: [ {
+    position: 80 ,
+    label: 'Parameter 5'
+  } ]
+  @UI.lineItem: [ {
+    position: 80 ,
+    label: 'Parameter 5'
+  } ]
+  Param5;
+
+  @UI.identification: [ {
+    position: 90 ,
+    label: 'Created By'
+  } ]
+  @UI.lineItem: [ {
+    position: 90 ,
+    label: 'Created By'
+  } ]
+  CreatedBy;
+
+  @UI.identification: [ {
+    position: 100 ,
+    label: 'Created On'
+  } ]
+  @UI.lineItem: [ {
+    position: 100 ,
+    label: 'Created On'
+  } ]
+  CreatedAt;
+
+  @UI.identification: [ {
+    position: 110 ,
+    label: 'Changed By'
+  } ]
+  @UI.lineItem: [ {
+    position: 110 ,
+    label: 'Changed By'
+  } ]
+  LastChangedBy;
+
+  @UI.identification: [ {
+    position: 120 ,
+    label: 'Changed On'
+  } ]
+  @UI.lineItem: [ {
+    position: 120 ,
+    label: 'Changed On'
+  } ]
+  LastChangedAt;
+}

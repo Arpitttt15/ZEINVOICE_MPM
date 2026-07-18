@@ -1,0 +1,97 @@
+managed with additional save implementation in class ZBP_I_PORTCODEADDRESSD_S unique;
+strict;
+with draft;
+define behavior for ZI_PortCodeAddressD_S alias PortCodeAddress
+draft table ZTSD_PORT_DT
+with unmanaged save
+lock master total etag LastChangedAtMax
+authorization master( global )
+
+{
+  field ( readonly )
+   SingletonID;
+
+  field ( features : instance )
+   TransportRequestID;
+
+  field ( notrigger )
+   SingletonID,
+   LastChangedAtMax;
+
+
+  update;
+  internal create;
+  internal delete;
+
+  draft action ( features : instance ) Edit with additional implementation;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+  action ( features : instance ) SelectCustomizingTransptReq parameter D_SelectCustomizingTransptReqP result [1] $self;
+
+  association _PortCodeAddressDeta { create ( features : instance ); with draft; }
+
+  validation ValidateTransportRequest on save ##NOT_ASSIGNED_TO_DETACT { create; update; }
+
+  side effects {
+    action SelectCustomizingTransptReq affects $self;
+  }
+  }
+
+define behavior for ZI_PortCodeAddressD alias PortCodeAddressDeta ##UNMAPPED_FIELD
+persistent table ZTSD_PORT_DTLS
+draft table ZTSD_PORT_DFT
+etag master LocalLastChangedAt
+lock dependent by _PortCodeAddress
+authorization dependent by _PortCodeAddress
+
+{
+  field ( mandatory : create )
+   SapPortCode,
+   PortCode;
+
+  field ( readonly )
+   SingletonID,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( readonly : update )
+   SapPortCode,
+   PortCode;
+
+  field ( notrigger )
+   SingletonID,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+
+  update( features : global );
+  delete( features : global );
+
+  factory action ( features : instance ) CopyPortCodeAddressDeta parameter ZD_CopyPortCodeAddressD [1];
+
+  mapping for ZTSD_PORT_DTLS
+  {
+    SapPortCode = SAP_PORT_CODE;
+    PortCode = PORT_CODE;
+    PortDesc = PORT_DESC;
+    PortGstin = PORT_GSTIN;
+    Name1 = NAME1;
+    Stras = STRAS;
+    Address1 = ADDRESS1;
+    Adress2 = ADRESS2;
+    Ort01 = ORT01;
+    Pstlz = PSTLZ;
+    Regio = REGIO;
+    LocalLastChangedBy = LOCAL_LAST_CHANGED_BY;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+    LastChangedAt = LAST_CHANGED_AT;
+  }
+
+  association _PortCodeAddress { with draft; }
+
+  validation ValidateTransportRequest on save ##NOT_ASSIGNED_TO_DETACT { create; update; delete; }
+}

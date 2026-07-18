@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "An SAP Fiori application.",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "E-Way Bill Generation : ExpoundTax"
+  },
+  "ui5AppDetails": {
+    "appId": "zsbbillingewb"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_F0146C70560148AB9B1B668DEE5770382D5FA821_TM",
+    "semanticObject": "EWayBill",
+    "action": "Display",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_F0146C70560148AB9B1B668DEE5770382D5FA821_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "E-Way Bill Generation : ExpoundTax",
+        "icon": "sap-icon://add-activity"
+      }
+    }
+  ]
+}

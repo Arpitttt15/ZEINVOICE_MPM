@@ -1,0 +1,4 @@
+@EndUserText.label: 'SD for E-Inv FI'
+define service ZSD_EINV_FI {
+  expose ZC_BILLING_INV_FI;
+}

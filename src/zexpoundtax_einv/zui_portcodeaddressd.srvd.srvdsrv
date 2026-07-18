@@ -1,0 +1,5 @@
+@ObjectModel.leadingEntity.name: 'ZI_PortCodeAddressD_S'
+define service ZUI_PORTCODEADDRESSD {
+  expose ZI_PORTCODEADDRESSD_S as PortCodeAddress;
+  expose ZI_PORTCODEADDRESSD as PortCodeAddressDeta;
+}
