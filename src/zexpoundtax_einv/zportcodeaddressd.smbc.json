@@ -13,8 +13,7 @@
     "name": "Port Code Address Details",
     "transportObject": "",
     "configurationGroup": "",
-    "skipRootEntity": true,
-    "enableFileUpload": false
+    "skipRootEntity": true
   },
   "appConfiguration": {
     "listReport": {},
@@ -31,7 +30,8 @@
         "selectionMode": "single",
         "selectAll": true,
         "rowCountMode": "auto",
-        "frozenColumnCount": 2
+        "frozenColumnCount": 2,
+        "threshold": 10
       }
     ]
   }

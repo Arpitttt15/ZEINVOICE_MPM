@@ -4,7 +4,6 @@
   <asx:values>
    <AREAT>ExpoundTax Function Group</AREAT>
    <INCLUDES>
-    <SOBJ_NAME>LZEXPOUNDTAX_EINVTOP</SOBJ_NAME>
     <SOBJ_NAME>SAPLZEXPOUNDTAX_EINV</SOBJ_NAME>
    </INCLUDES>
   </asx:values>

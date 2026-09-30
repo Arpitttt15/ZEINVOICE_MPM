@@ -788,11 +788,16 @@ CLASS ZCL_EXPOUNDTAX_EINVVOICE IMPLEMENTATION.
       ENDIF.
 
       REPLACE ALL OCCURRENCES OF '"BchDtls":{"Nm":"","ExpDt":"","WrDt":""},' IN lv_json WITH ' '.
-
-      IF gv_ship = 'X'.
+      "----By AM for Bill To Ship To GSTN Base 28072026
+*      IF gv_ship = 'X'.
+*        REPLACE ALL OCCURRENCES OF '"ShipDtls":{"Gstin":"","LglNm":"","TrdNm":"","Addr1":"","Addr2":"","Loc":"","Pin":0,"Stcd":""},'
+*        IN lv_json WITH ''.
+*      ENDIF.
+      IF gv_ship = ' '.
         REPLACE ALL OCCURRENCES OF '"ShipDtls":{"Gstin":"","LglNm":"","TrdNm":"","Addr1":"","Addr2":"","Loc":"","Pin":0,"Stcd":""},'
         IN lv_json WITH ''.
       ENDIF.
+      "----By AM for Bill To Ship To GSTN Base 28072026
 
       REPLACE ALL OCCURRENCES OF '""' IN lv_json WITH 'null'.
       REPLACE ALL OCCURRENCES OF '"Distance":null' IN lv_json WITH '"Distance":0'.
@@ -1322,6 +1327,8 @@ CLASS ZCL_EXPOUNDTAX_EINVVOICE IMPLEMENTATION.
           WHERE addressid = @lv_bp-addressid
           INTO @DATA(ls_port).
 
+          CLEAR : wa_shipdtls.    "----By AM for Bill To Ship To GSTN Base 28072026
+
           lv_state_cd = VALUE #( it_state[ regio = ls_port-region ]-statecode OPTIONAL ).
           wa_shipdtls-gstin = wa_kna1-taxnumber3.
           wa_shipdtls-lglnm = |{ gs_buyaddress1-organizationname1 } { gs_buyaddress1-organizationname2 }|.
@@ -1357,6 +1364,8 @@ CLASS ZCL_EXPOUNDTAX_EINVVOICE IMPLEMENTATION.
             WHERE addressid = @wa_kna1_sh-addressid
             INTO @DATA(gs_shpaddress).
 
+            CLEAR : wa_shipdtls.    "----By AM for Bill To Ship To GSTN Base 28072026
+
             wa_shipdtls-gstin = wa_kna1_sh-taxnumber3.
             wa_shipdtls-pin   = gs_shpaddress-postalcode.
             wa_shipdtls-lglnm = |{ gs_shpaddress-organizationname1 } { gs_shpaddress-organizationname2 }|.
@@ -1369,20 +1378,41 @@ CLASS ZCL_EXPOUNDTAX_EINVVOICE IMPLEMENTATION.
 *          wa_shipdtls-pos  = lv_state_cd.
             wa_shipdtls-addr1 = |{ gs_shpaddress-streetname } { gs_shpaddress-streetprefixname1 } { gs_shpaddress-streetprefixname2 }|.
             wa_shipdtls-addr2 = |{ gs_shpaddress-streetsuffixname1 } { gs_shpaddress-streetsuffixname2 } { gs_shpaddress-cityname }|.
+*          ----By AM for Bill To Ship To GSTN Base 28072026
+            IF wa_shipdtls-gstin NE wa_buyerdtls-gstin.
+              gv_ship = 'X'.
+            ELSE.
+            ENDIF.
+*          ----By AM for Bill To Ship To GSTN Base 28072026
           ELSE.
-            gv_ship = 'X'.
+*          ----By AM for Bill To Ship To GSTN Base 28072026
+            SELECT SINGLE
+            customer, addressid, customername, taxnumber3, country,
+            streetname, cityname, postalcode, region, telephonenumber1
+            FROM i_customer
+            WHERE customer = @wa_vbpa-customer
+            INTO @wa_kna1_sh.
+            IF wa_kna1_sh-taxnumber3 NE wa_buyerdtls-gstin.
+              gv_ship = 'X'.
+            ELSE.
+            ENDIF.
+*          ----By AM for Bill To Ship To GSTN Base 28072026
+*            gv_ship = 'X'.      ----By AM for Bill To Ship To GSTN Base 28072026
           ENDIF.
 
           READ TABLE it_vbpa_cr INTO wa_vbpa_cr WITH  KEY partnerfunction = 'WE'. "SHIP TO PARTY
           IF sy-subrc = 0 AND wa_vbpa_cr-customer NE lv_buyer.
 
             CLEAR gv_ship.
+
             SELECT SINGLE
             customer, addressid, customername, taxnumber3, country,
             streetname, cityname, postalcode, region, telephonenumber1
             FROM i_customer
             WHERE customer = @wa_vbpa_cr-customer
             INTO @wa_kna1_sh.
+
+            CLEAR : wa_shipdtls.    "----By AM for Bill To Ship To GSTN Base 28072026
 
             SELECT SINGLE * FROM i_address_2  "#EC CI_ALL_FIELDS_NEEDED
             WITH PRIVILEGED ACCESS
@@ -1403,7 +1433,14 @@ CLASS ZCL_EXPOUNDTAX_EINVVOICE IMPLEMENTATION.
             wa_shipdtls-addr1 = |{ gs_shpaddresscr-streetname } { gs_shpaddresscr-streetprefixname1 } { gs_shpaddresscr-streetprefixname2 }|.
             wa_shipdtls-addr2 = |{ gs_shpaddresscr-streetsuffixname1 } { gs_shpaddresscr-streetsuffixname2 } { gs_shpaddresscr-cityname }|.
           ELSE.
-            gv_ship = 'X'.
+*           ----By AM for Bill To Ship To GSTN Base 28072026
+            IF wa_shipdtls-gstin NE wa_buyerdtls-gstin.
+              gv_ship = 'X'.
+            ELSE.
+              CLEAR : wa_shipdtls.    "----By AM for Bill To Ship To GSTN Base 28072026
+            ENDIF.
+*          ----By AM for Bill To Ship To GSTN Base 28072026
+*            gv_ship = 'X'.            ----By AM for Bill To Ship To GSTN Base 28072026
           ENDIF.
 
         ENDIF.
@@ -1484,7 +1521,7 @@ CLASS ZCL_EXPOUNDTAX_EINVVOICE IMPLEMENTATION.
           wa_itemlist-unit = VALUE #( it_meins[ sap_uom = wa_vbrp-billingquantityunit ]-gst_uom OPTIONAL ).
 
 *----By AM for ZKF0 21.06.2026
-    SORT pricingdata BY BillingDocument BillingDocumentItem PricingProcedureStep ASCENDING.
+          SORT pricingdata BY billingdocument billingdocumentitem pricingprocedurestep ASCENDING.
 *----By AM for ZKF0 21.06.2026
 
           LOOP AT pricingdata INTO DATA(prcd_elements)
@@ -1497,8 +1534,8 @@ CLASS ZCL_EXPOUNDTAX_EINVVOICE IMPLEMENTATION.
 *----By AM for ZKF0 21.06.2026
 *              lv_unit_pr = prcd_elements-conditionratevalue / prcd_elements-conditionquantity. "By AM for ZKF0 comment
               IF prcd_elements-conditiontype = 'ZKF0'.
-                data : wa_zkf0 type I_BillingDocItemPrcgElmntBasic-conditionratevalue.
-                clear : wa_zkf0.
+                DATA : wa_zkf0 TYPE i_billingdocitemprcgelmntbasic-conditionratevalue.
+                CLEAR : wa_zkf0.
                 wa_zkf0 = prcd_elements-conditionratevalue / wa_itemlist-qty.
                 lv_unit_pr = lv_unit_pr + wa_zkf0.
               ELSE.
@@ -1741,7 +1778,14 @@ CLASS ZCL_EXPOUNDTAX_EINVVOICE IMPLEMENTATION.
         wa_transaction-sellerdtls = wa_sellerdtls.
         wa_transaction-buyerdtls  = wa_buyerdtls.
         wa_transaction-dispdtls   = wa_dispdtls.
-        wa_transaction-shipdtls   = wa_shipdtls.
+*           ----By AM for Bill To Ship To GSTN Base 28072026
+*        wa_transaction-shipdtls   = wa_shipdtls.   ----By AM for Bill To Ship To GSTN Base 28072026
+        IF gv_ship = 'X' OR
+           gv_exp = 'X'.
+          wa_transaction-shipdtls   = wa_shipdtls.
+        ELSE.
+        ENDIF.
+*           ----By AM for Bill To Ship To GSTN Base 28072026
         wa_transaction-itemlist[] = itemlist[].
 *      wa_transaction-paydtls    = wa_paydtls.
         wa_transaction-refdtls    = wa_refdtls.
